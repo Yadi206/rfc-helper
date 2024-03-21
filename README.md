@@ -63,3 +63,10 @@ runrfc：通用的RFC调用
 微信号：hyd85716
 加群方法：加群主好友，拉入群
 直播间：http://live.bilibili.com/4623066
+
+
+####带JDK的JAR包
+链接：https://pan.baidu.com/s/1XpojCkssCvXrV4m8I4RyEA?pwd=zfvo
+提取码：zfvo
+
+直接运行run.cmd启动服务
