@@ -8,33 +8,58 @@
 
 #### 软件架构
 软件架构说明
+springboot
+apache-maven-3.6.2
+jdk 1.8
 
 
 #### 安装教程
+package后，需要将JAR中的sapjco3-3.1.2.jar 改为 sapjco3.jar
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 使用说明
+initialConfig：配置登录文件
+printFunInfo：打印函数参数信息
+getFunInfo：获取函数信息
+getInputJson：读取输入参数
+getTableJson：读取表参数
+getOutputJson：读取输出参数
+getChangeJson：读取修改参数
+runrfc：通用的RFC调用
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+调用JSON举例：
+{
+"JCO_ASHOST": "172.1.1.1",
+"JCO_SYSNR": "00",
+"JCO_CLIENT": "125",
+"JCO_USER": "user",
+"JCO_PASSWD": "111111",
+"JCO_LANG": "ZH",
+"JCO_POOL_CAPACITY": "100",
+"JCO_PEAK_LIMIT": "100",
+"JCO_SAPROUTER": "",
+"FUNNAME": "STFC_CONNECTION",
+"InputJson": "{\"REQUTEXT\":\"参数值\"}",
+"OutputJson": "",
+"TableJson": "",
+"ChangeJson": ""
+}
 
-#### 参与贡献
+第一次使用时，可通过initialConfig创建配置登录文件
+{
+"JCO_ASHOST": "172.1.1.1",
+"JCO_SYSNR": "00",
+"JCO_CLIENT": "125",
+"JCO_USER": "user",
+"JCO_PASSWD": "111111",
+"JCO_LANG": "ZH",
+"JCO_POOL_CAPACITY": "100",
+"JCO_PEAK_LIMIT": "100",
+"JCO_SAPROUTER": ""
+}
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 作者介绍 
+让分享成为习惯！
+微信号：hyd85716
+加群方法：加群主好友，拉入群
+直播间：http://live.bilibili.com/4623066
