@@ -28,44 +28,56 @@ getChangeJson：读取修改参数
 runrfc：通用的RFC调用
 
 调用JSON举例：
+```json
 {
-"JCO_ASHOST": "172.1.1.1",
-"JCO_SYSNR": "00",
-"JCO_CLIENT": "125",
-"JCO_USER": "user",
-"JCO_PASSWD": "111111",
-"JCO_LANG": "ZH",
-"JCO_POOL_CAPACITY": "100",
-"JCO_PEAK_LIMIT": "100",
-"JCO_SAPROUTER": "",
-"FUNNAME": "STFC_CONNECTION",
-"InputJson": "{\"REQUTEXT\":\"参数值\"}",
-"OutputJson": "",
-"TableJson": "",
-"ChangeJson": ""
+  "JCO_ASHOST": "172.1.1.1",
+  "JCO_SYSNR": "00",
+  "JCO_CLIENT": "125",
+  "JCO_USER": "user",
+  "JCO_PASSWD": "111111",
+  "JCO_LANG": "ZH",
+  "JCO_POOL_CAPACITY": "100",
+  "JCO_PEAK_LIMIT": "100",
+  "JCO_SAPROUTER": "",
+  "FUNNAME": "STFC_CONNECTION",
+  "InputJson": "{\"REQUTEXT\":\"参数值\"}",
+  "OutputJson": "",
+  "TableJson": "",
+  "ChangeJson": ""
 }
+```
+
 
 第一次使用时，可通过initialConfig创建配置登录文件
+
+```json
 {
-"JCO_ASHOST": "172.1.1.1",
-"JCO_SYSNR": "00",
-"JCO_CLIENT": "125",
-"JCO_USER": "user",
-"JCO_PASSWD": "111111",
-"JCO_LANG": "ZH",
-"JCO_POOL_CAPACITY": "100",
-"JCO_PEAK_LIMIT": "100",
-"JCO_SAPROUTER": ""
+  "JCO_ASHOST": "172.1.1.1",
+  "JCO_SYSNR": "00",
+  "JCO_CLIENT": "125",
+  "JCO_USER": "user",
+  "JCO_PASSWD": "111111",
+  "JCO_LANG": "ZH",
+  "JCO_POOL_CAPACITY": "100",
+  "JCO_PEAK_LIMIT": "100",
+  "JCO_SAPROUTER": ""
 }
+```
+
 
 #### 作者介绍 
+
 让分享成为习惯！
+
 微信号：hyd85716
+
 加群方法：加群主好友，拉入群
+
 直播间：http://live.bilibili.com/4623066
 
 
-####带JDK的JAR包
+#### 带JDK的JAR包
+
 链接：https://pan.baidu.com/s/1XpojCkssCvXrV4m8I4RyEA?pwd=zfvo
 提取码：zfvo
 
