@@ -1,16 +1,16 @@
 # rfc-helper
 
 #### 介绍
-该服务通过JCO访问SAP的RFC函数。
-预制了登录、读取结构、通用调用等方法
-也包含了官方DEMO代码
-同时以BAPI_PRODORD_CREATEC为例单独写了转换方法
+该服务通过JCO访问SAP的RFC函数。  
+预制了登录、读取结构、通用调用等方法  
+也包含了官方DEMO代码  
+同时以BAPI_PRODORD_CREATEC为例单独写了转换方法  
 
 #### 软件架构
-软件架构说明
-springboot
-apache-maven-3.6.2
-jdk 1.8
+软件架构说明  
+springboot  
+apache-maven-3.6.2  
+jdk 1.8  
 
 
 #### 安装教程
@@ -18,14 +18,14 @@ package后，需要将JAR中的sapjco3-3.1.2.jar 改为 sapjco3.jar
 
 
 #### 使用说明
-initialConfig：配置登录文件
-printFunInfo：打印函数参数信息
-getFunInfo：获取函数信息
-getInputJson：读取输入参数
-getTableJson：读取表参数
-getOutputJson：读取输出参数
-getChangeJson：读取修改参数
-runrfc：通用的RFC调用
+initialConfig：配置登录文件  
+printFunInfo：打印函数参数信息  
+getFunInfo：获取函数信息  
+getInputJson：读取输入参数  
+getTableJson：读取表参数  
+getOutputJson：读取输出参数  
+getChangeJson：读取修改参数  
+runrfc：通用的RFC调用  
 
 调用JSON举例：
 ```json
