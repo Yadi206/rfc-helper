@@ -3,8 +3,7 @@ package com.tiger.rfchelp.web;
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoDestinationManager;
 import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.ext.DestinationDataProvider;
-
+import com.sap.conn.jco.ext.DestinationDataProvider; 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Properties;
@@ -20,6 +19,7 @@ public   class SapConnect {
             cfg.deleteOnExit();
         }
         try {
+
             FileOutputStream fos = new FileOutputStream(cfg, false);
             properties.store(fos, "for tests only !");
             fos.close();

@@ -22,7 +22,7 @@ public class RFCHelpController {
     public String printFunInfo(@RequestBody SAPLoginPara sapPara) throws JCoException {
         String rJson = "";
         JCoDestination destination = null;
-        destination = SapConnect.connect(sapPara);
+        destination = SapConnect.connect(sapPara); 
         JCoFunction function = destination.getRepository().getFunction(sapPara.FUNNAME);
         rJson = "ImportParameter" + "\r\n";
         rJson = rJson + function.getImportParameterList().getListMetaData().toString()+ "\r\n";
