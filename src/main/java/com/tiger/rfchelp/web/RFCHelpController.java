@@ -22,20 +22,75 @@ public class RFCHelpController {
     public String printFunInfo(@RequestBody SAPLoginPara sapPara) throws JCoException {
         String rJson = "";
         JCoDestination destination = null;
-        destination = SapConnect.connect(sapPara); 
+        destination = SapConnect.connect(sapPara);
         JCoFunction function = destination.getRepository().getFunction(sapPara.FUNNAME);
-        rJson = "ImportParameter" + "\r\n";
-        rJson = rJson + function.getImportParameterList().getListMetaData().toString()+ "\r\n";
-        rJson = rJson + "ExportParameter" + "\r\n";
-        rJson = rJson + function.getExportParameterList().getListMetaData().toString()+ "\r\n";
-        for (int i = 0; i < function.getTableParameterList().getFieldCount(); i++) {
-            JCoTable table = function.getTableParameterList().getTable(((DefaultListMetaData) function.getTableParameterList().getListMetaData()).getName(i));
-            table.appendRow();
+        int i = 0;
+        rJson += "ImportParameter" + "\r\n";
+        if (function.getImportParameterList() != null) {
+            for (i = 0; i < function.getImportParameterList().getFieldCount(); i++) {
+                JCoParameterList jpl = function.getImportParameterList();
+                DefaultListMetaData dlmd = (DefaultListMetaData) jpl.getListMetaData();
+                String name = dlmd.getName(i);
+                String Type = dlmd.getTypeAsString(i);
+                int Typei = dlmd.getType(i);
+                if (Typei == 17) {
+                    JCoStructure structure = function.getImportParameterList().getStructure(((DefaultListMetaData) function.getImportParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(structure);
+                }
+                if (Typei == 99) {
+                    JCoTable table = function.getImportParameterList().getTable(((DefaultListMetaData) function.getImportParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(table);
+                }
+                String aa = "";
+            }
+            rJson += function.getImportParameterList().toJSON() + "\r\n";
         }
-        rJson = rJson + "ChangingParameter" + "\r\n";
-        rJson = rJson + function.getChangingParameterList().getListMetaData().toString()+ "\r\n";
-        rJson = rJson + "TableParameter" + "\r\n";
-        rJson = rJson + function.getTableParameterList().getListMetaData().toString()+ "\r\n";
+        rJson += "ExportParameter" + "\r\n";
+        if (function.getExportParameterList() != null) {
+            for (i = 0; i < function.getExportParameterList().getFieldCount(); i++) {
+                JCoParameterList jpl = function.getExportParameterList();
+                DefaultListMetaData dlmd = (DefaultListMetaData) jpl.getListMetaData();
+                String name = dlmd.getName(i);
+                String Type = dlmd.getTypeAsString(i);
+                int Typei = dlmd.getType(i);
+                if (Typei == 17) {
+                    JCoStructure structure = function.getExportParameterList().getStructure(((DefaultListMetaData) function.getExportParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(structure);
+                }
+                if (Typei == 99) {
+                    JCoTable table = function.getExportParameterList().getTable(((DefaultListMetaData) function.getExportParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(table);
+                }
+                String aa = "";
+            }
+            rJson += function.getExportParameterList().toJSON() + "\r\n";
+        }
+        rJson += "TableParameter" + "\r\n";
+        if (function.getTableParameterList() != null) {
+            JCoTable table = function.getTableParameterList().getTable(((DefaultListMetaData) function.getTableParameterList().getListMetaData()).getName(i));
+            SapCommon.setDefaultValue(table);
+            rJson += function.getTableParameterList().toJSON() + "\r\n";
+        }
+        rJson += "ChangingParameter" + "\r\n";
+        if (function.getChangingParameterList() != null) {
+            for (i = 0; i < function.getChangingParameterList().getFieldCount(); i++) {
+                JCoParameterList jpl = function.getChangingParameterList();
+                DefaultListMetaData dlmd = (DefaultListMetaData) jpl.getListMetaData();
+                String name = dlmd.getName(i);
+                String Type = dlmd.getTypeAsString(i);
+                int Typei = dlmd.getType(i);
+                if (Typei == 17) {
+                    JCoStructure structure = function.getChangingParameterList().getStructure(((DefaultListMetaData) function.getChangingParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(structure);
+                }
+                if (Typei == 99) {
+                    JCoTable table = function.getChangingParameterList().getTable(((DefaultListMetaData) function.getChangingParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(table);
+                }
+                String aa = "";
+            }
+            rJson += function.getChangingParameterList().toJSON() + "\r\n";
+        }
         return rJson;
     }
 
@@ -43,20 +98,112 @@ public class RFCHelpController {
     @ResponseBody
     public SAPReturn getFunInfo(@RequestBody SAPLoginPara sapPara) throws JCoException {
         SAPReturn rSap = new SAPReturn(sapPara);
-        String rJson = "";
         JCoDestination destination = null;
         destination = SapConnect.connect(sapPara);
         JCoFunction function = destination.getRepository().getFunction(sapPara.FUNNAME);
-
-        rSap.InputJson = function.getImportParameterList().toJSON();
-        rSap.OutputJson = function.getExportParameterList().toJSON();
-        for (int i = 0; i < function.getTableParameterList().getFieldCount(); i++) {
-            JCoTable table = function.getTableParameterList().getTable(((DefaultListMetaData) function.getTableParameterList().getListMetaData()).getName(i));
-            table.appendRow();
+        if (function.getImportParameterList() != null) {
+            for (int i = 0; i < function.getImportParameterList().getFieldCount(); i++) {
+                JCoParameterList jpl = function.getImportParameterList();
+                DefaultListMetaData dlmd = (DefaultListMetaData) jpl.getListMetaData();
+                String name = dlmd.getName(i);
+                String Type = dlmd.getTypeAsString(i);
+                int Typei = dlmd.getType(i);
+                if (Typei == 17) {
+                    JCoStructure structure = function.getImportParameterList().getStructure(((DefaultListMetaData) function.getImportParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(structure);
+                }
+                if (Typei == 99) {
+                    JCoTable table = function.getImportParameterList().getTable(((DefaultListMetaData) function.getImportParameterList().getListMetaData()).getName(i));
+                    SapCommon.setDefaultValue(table);
+                }
+                String aa = "";
+            }
+            rSap.InputJson = function.getImportParameterList().toJSON();
         }
-        rSap.TableJson = function.getTableParameterList().toJSON();
-        rSap.ChangeJson = function.getChangingParameterList().toJSON();
+
+        if (function.getExportParameterList() != null) {
+            rSap.OutputJson = function.getExportParameterList().toJSON();
+        }
+        if (function.getTableParameterList() != null) {
+            for (int i = 0; i < function.getTableParameterList().getFieldCount(); i++) {
+                JCoTable table = function.getTableParameterList().getTable(((DefaultListMetaData) function.getTableParameterList().getListMetaData()).getName(i));
+                table.appendRow();
+            }
+        }
+        if (function.getTableParameterList() != null) {
+            rSap.TableJson = function.getTableParameterList().toJSON();
+        }
+        if (function.getChangingParameterList() != null) {
+            rSap.ChangeJson = function.getChangingParameterList().toJSON();
+        }
         return rSap;
+//       public static String getJCOTypeString(int type) {
+//           switch (type) {
+//               case 0:
+//                   return "CHAR";
+//               default:
+//                   return "CHAR";
+//               case 1:
+//                   return "DATE";
+//               case 2:
+//                   return "BCD";
+//               case 3:
+//                   return "TIME";
+//               case 4:
+//                   return "BYTE";
+//               case 6:
+//                   return "NUM";
+//               case 7:
+//                   return "FLOAT";
+//               case 8:
+//                   return "INT";
+//               case 9:
+//                   return "INT2";
+//               case 10:
+//                   return "INT1";
+//               case 16:
+//                   return "ABAPOBJECT";
+//               case 17:
+//                   return "STRUCTURE";
+//               case 23:
+//                   return "DECF16";
+//               case 24:
+//                   return "DECF34";
+//               case 29:
+//                   return "STRING";
+//               case 30:
+//                   return "XSTRING";
+//               case 31:
+//                   return "BOX";
+//               case 32:
+//                   return "GENERIC_BOX";
+//               case 40:
+//                   return "INT8";
+//               case 51:
+//                   return "UTCLONG";
+//               case 52:
+//                   return "UTCSECOND";
+//               case 53:
+//                   return "UTCMINUTE";
+//               case 54:
+//                   return "DTDAY";
+//               case 55:
+//                   return "DTWEEK";
+//               case 56:
+//                   return "DTMONTH";
+//               case 57:
+//                   return "TSECOND";
+//               case 58:
+//                   return "TMINUTE";
+//               case 59:
+//                   return "CDAY";
+//               case 98:
+//                   return "EXCEPTION";
+//           }
+//       }
+//       16 ABAPOBJECT
+//       17 STRUCTURE
+//       99 TABLE
     }
 
     @RequestMapping("/getInputJson")
@@ -117,7 +264,7 @@ public class RFCHelpController {
         if (sapPara.OutputJson != "" && sapPara.OutputJson != null) {
             function.getExportParameterList().fromJSON(sapPara.OutputJson);
         }
-        if (sapPara.InputJson != "" && sapPara.InputJson != null)  {
+        if (sapPara.InputJson != "" && sapPara.InputJson != null) {
             function.getImportParameterList().fromJSON(sapPara.InputJson);
         }
         if (sapPara.ChangeJson != "" && sapPara.ChangeJson != null) {
@@ -128,20 +275,16 @@ public class RFCHelpController {
         }
         try {
             function.execute(destination);
-            if (function.getImportParameterList() != null)
-            {
+            if (function.getImportParameterList() != null) {
                 rSap.InputJson = function.getImportParameterList().toJSON();
             }
-            if (function.getExportParameterList() != null)
-            {
+            if (function.getExportParameterList() != null) {
                 rSap.OutputJson = function.getExportParameterList().toJSON();
             }
-            if (function.getChangingParameterList() != null)
-            {
+            if (function.getChangingParameterList() != null) {
                 rSap.ChangeJson = function.getChangingParameterList().toJSON();
             }
-            if (function.getTableParameterList() != null)
-            {
+            if (function.getTableParameterList() != null) {
                 rSap.TableJson = function.getTableParameterList().toJSON();
             }
             rSap.rType = "S";
