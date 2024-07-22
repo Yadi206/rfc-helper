@@ -67,9 +67,11 @@ public class RFCHelpController {
         }
         rJson += "TableParameter" + "\r\n";
         if (function.getTableParameterList() != null) {
-            JCoTable table = function.getTableParameterList().getTable(((DefaultListMetaData) function.getTableParameterList().getListMetaData()).getName(i));
-            SapCommon.setDefaultValue(table);
-            rJson += function.getTableParameterList().toJSON() + "\r\n";
+            for (i = 0; i < function.getTableParameterList().getFieldCount(); i++) {
+                JCoTable table = function.getTableParameterList().getTable(((DefaultListMetaData) function.getTableParameterList().getListMetaData()).getName(i));
+                SapCommon.setDefaultValue(table);
+                rJson += function.getTableParameterList().toJSON() + "\r\n";
+            }
         }
         rJson += "ChangingParameter" + "\r\n";
         if (function.getChangingParameterList() != null) {
@@ -137,70 +139,6 @@ public class RFCHelpController {
             rSap.ChangeJson = function.getChangingParameterList().toJSON();
         }
         return rSap;
-//       public static String getJCOTypeString(int type) {
-//           switch (type) {
-//               case 0:
-//                   return "CHAR";
-//               default:
-//                   return "CHAR";
-//               case 1:
-//                   return "DATE";
-//               case 2:
-//                   return "BCD";
-//               case 3:
-//                   return "TIME";
-//               case 4:
-//                   return "BYTE";
-//               case 6:
-//                   return "NUM";
-//               case 7:
-//                   return "FLOAT";
-//               case 8:
-//                   return "INT";
-//               case 9:
-//                   return "INT2";
-//               case 10:
-//                   return "INT1";
-//               case 16:
-//                   return "ABAPOBJECT";
-//               case 17:
-//                   return "STRUCTURE";
-//               case 23:
-//                   return "DECF16";
-//               case 24:
-//                   return "DECF34";
-//               case 29:
-//                   return "STRING";
-//               case 30:
-//                   return "XSTRING";
-//               case 31:
-//                   return "BOX";
-//               case 32:
-//                   return "GENERIC_BOX";
-//               case 40:
-//                   return "INT8";
-//               case 51:
-//                   return "UTCLONG";
-//               case 52:
-//                   return "UTCSECOND";
-//               case 53:
-//                   return "UTCMINUTE";
-//               case 54:
-//                   return "DTDAY";
-//               case 55:
-//                   return "DTWEEK";
-//               case 56:
-//                   return "DTMONTH";
-//               case 57:
-//                   return "TSECOND";
-//               case 58:
-//                   return "TMINUTE";
-//               case 59:
-//                   return "CDAY";
-//               case 98:
-//                   return "EXCEPTION";
-//           }
-//       }
 //       16 ABAPOBJECT
 //       17 STRUCTURE
 //       99 TABLE
